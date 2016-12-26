@@ -1,0 +1,16 @@
+{
+    "name": "alejobit/placetopay-pse-php",
+    "description": "Use PlacetoPay PSE service in your PHP project",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Manuel Mendoza",
+            "email": "alejobit@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-xml": "*",
+        "ext-soap": "*"
+    }
+}

@@ -1,5 +1,7 @@
 # PlacetoPay PSE SDK for PHP
 
+[![Build Status](https://travis-ci.org/alejobit/placetopay-pse-php.svg?branch=master)](https://travis-ci.org/alejobit/placetopay-pse-php)
+
 Use PlacetoPay PSE service in your PHP project
 
 ## Requirements

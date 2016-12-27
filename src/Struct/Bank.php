@@ -4,6 +4,9 @@ namespace PlacetoPay\PSE\Struct;
 
 class Bank
 {
+    const PERSONAL_INTERFACE = 0;
+    const BUSINESS_INTERFACE = 1;
+
     /**
      * @var string
      */

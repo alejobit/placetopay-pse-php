@@ -3,6 +3,7 @@
 namespace PlacetoPay\PSE;
 
 use PlacetoPay\PSE\Struct\Authentication;
+use PlacetoPay\PSE\Struct\GetBankList;
 
 class Client extends \SoapClient
 {
@@ -21,5 +22,10 @@ class Client extends \SoapClient
         $this->auth = new Authentication($login, $tranKey);
 
         parent::__construct($wsdl);
+    }
+
+    public function getBankList()
+    {
+        return parent::getBankList(new GetBankList($this->auth));
     }
 }

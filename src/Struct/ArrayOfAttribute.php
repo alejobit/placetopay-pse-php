@@ -2,13 +2,8 @@
 
 namespace PlacetoPay\PSE\Struct;
 
-class ArrayOfAttribute
+class ArrayOfAttribute extends ArrayStruct
 {
-    /**
-     * @var array
-     */
-    private $item;
-
     /**
      * @param array $items
      */

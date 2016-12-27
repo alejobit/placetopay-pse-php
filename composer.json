@@ -12,5 +12,18 @@
     "require": {
         "ext-xml": "*",
         "ext-soap": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "PlacetoPay\\PSE\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PlacetoPay\\PSE\\Tests\\": "tests/"
+        }
     }
 }

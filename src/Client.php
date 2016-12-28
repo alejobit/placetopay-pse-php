@@ -13,6 +13,7 @@ use PlacetoPay\PSE\Struct\GetTransactionInformation;
 use PlacetoPay\PSE\Struct\GetTransactionInformationResponse;
 use PlacetoPay\PSE\Struct\PSETransactionMultiCreditRequest;
 use PlacetoPay\PSE\Struct\PSETransactionRequest;
+use Psr\Cache\CacheItemPoolInterface;
 
 class Client extends \SoapClient
 {
@@ -20,6 +21,11 @@ class Client extends \SoapClient
      * @var Authentication
      */
     private $auth;
+
+    /**
+     * @var CacheItemPoolInterface
+     */
+    private $cachePool;
 
     /**
      * @param string $login
@@ -36,11 +42,33 @@ class Client extends \SoapClient
     }
 
     /**
+     * @param CacheItemPoolInterface $cachePool
+     */
+    public function setCachePool(CacheItemPoolInterface $cachePool)
+    {
+        $this->cachePool = $cachePool;
+    }
+
+    /**
      * @return GetBankListResponse
      */
     public function getBankList()
     {
-        return parent::getBankList(new GetBankList($this->auth));
+        if (is_null($this->cachePool)) {
+            return $this->getUpdatedBankList();
+        }
+
+        $cachedResponse = $this->cachePool->getItem('get_bank_list_response');
+
+        if ($cachedResponse->isHit()) {
+            return $cachedResponse->get();
+        }
+
+        $response = $this->getUpdatedBankList();
+        $cachedResponse->set($response);
+        $this->cachePool->save($cachedResponse);
+
+        return $response;
     }
 
     /**
@@ -99,5 +127,14 @@ class Client extends \SoapClient
             'TransactionInformation' => '\\PlacetoPay\\PSE\\Struct\\TransactionInformation',
             'getTransactionInformationResponse' => '\\PlacetoPay\\PSE\\Struct\\GetTransactionInformationResponse',
         );
+    }
+
+    /**
+     * @return GetBankListResponse
+     */
+    private function getUpdatedBankList()
+    {
+        var_dump('obteniendo lista de bancos actualizada');
+        return parent::getBankList(new GetBankList($this->auth));
     }
 }

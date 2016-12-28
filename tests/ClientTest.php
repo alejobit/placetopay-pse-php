@@ -17,6 +17,7 @@ use PlacetoPay\PSE\Struct\PSETransactionMultiCreditRequest;
 use PlacetoPay\PSE\Struct\PSETransactionRequest;
 use PlacetoPay\PSE\Struct\PSETransactionResponse;
 use PlacetoPay\PSE\Struct\TransactionInformation;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class ClientTest extends TestCase
 {
@@ -27,6 +28,7 @@ class ClientTest extends TestCase
     {
         $client = new Client('6dd490faf9cb87a9862245da41170ff2', '024h1IlD');
         $this->assertInstanceOf(\SoapClient::class, $client);
+        $client->setCachePool(new FilesystemAdapter());
 
         return $client;
     }

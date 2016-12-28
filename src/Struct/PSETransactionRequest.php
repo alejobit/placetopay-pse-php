@@ -7,87 +7,87 @@ class PSETransactionRequest
     /**
      * @var string
      */
-    private $bankCode;
+    protected $bankCode;
 
     /**
      * @var string
      */
-    private $bankInterface;
+    protected $bankInterface;
 
     /**
      * @var string
      */
-    private $returnURL;
+    protected $returnURL;
 
     /**
      * @var string
      */
-    private $reference;
+    protected $reference;
 
     /**
      * @var string
      */
-    private $description;
+    protected $description;
 
     /**
      * @var string
      */
-    private $language;
+    protected $language;
 
     /**
      * @var string
      */
-    private $currency;
+    protected $currency;
 
     /**
      * @var double
      */
-    private $totalAmount;
+    protected $totalAmount;
 
     /**
      * @var double
      */
-    private $taxAmount;
+    protected $taxAmount;
 
     /**
      * @var double
      */
-    private $devolutionBase;
+    protected $devolutionBase;
 
     /**
      * @var double
      */
-    private $tipAmount;
+    protected $tipAmount;
 
     /**
      * @var Person
      */
-    private $payer;
+    protected $payer;
 
     /**
      * @var Person
      */
-    private $buyer;
+    protected $buyer;
 
     /**
      * @var Person
      */
-    private $shipping;
+    protected $shipping;
 
     /**
      * @var string
      */
-    private $ipAddress;
+    protected $ipAddress;
 
     /**
      * @var string
      */
-    private $userAgent;
+    protected $userAgent;
 
     /**
      * @var ArrayOfAttribute
      */
-    private $additionalData;
+    protected $additionalData;
 
     /**
      * @return string

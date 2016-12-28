@@ -2,7 +2,7 @@
 
 namespace PlacetoPay\PSE\Struct;
 
-class ArrayOfAttribute extends ArrayStruct
+class ArrayOfCreditConcept extends ArrayStruct
 {
     /**
      * @param array $items
@@ -10,9 +10,9 @@ class ArrayOfAttribute extends ArrayStruct
     public function setItems(array $items = array())
     {
         foreach ($items as $item) {
-            if (!$item instanceof Attribute) {
+            if (!$item instanceof CreditConcept) {
                 throw new \InvalidArgumentException(sprintf(
-                    'The item property can only contain items of \PlacetoPay\PSE\Struct\Attribute, "%s" given',
+                    'The item property can only contain items of \PlacetoPay\PSE\Struct\CreditConcept, "%s" given',
                     is_object($item) ? get_class($item) : gettype($item)
                 ));
             }
@@ -22,9 +22,9 @@ class ArrayOfAttribute extends ArrayStruct
     }
 
     /**
-     * @param Attribute $item
+     * @param CreditConcept $item
      */
-    public function addItem(Attribute $item)
+    public function addItem(CreditConcept $item)
     {
         $this->item[] = $item;
     }

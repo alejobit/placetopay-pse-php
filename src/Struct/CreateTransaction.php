@@ -7,12 +7,12 @@ class CreateTransaction
     /**
      * @var Authentication
      */
-    private $auth;
+    protected $auth;
 
     /**
      * @var PSETransactionRequest
      */
-    private $transaction;
+    protected $transaction;
 
     /**
      * @param Authentication $auth

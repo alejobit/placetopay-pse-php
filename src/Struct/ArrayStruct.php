@@ -10,6 +10,30 @@ class ArrayStruct implements \Iterator, \Countable
     protected $item;
 
     /**
+     * @param array $items
+     */
+    public function __construct(array $items = array())
+    {
+        $this->setItems($items);
+    }
+
+    /**
+     * @return array
+     */
+    public function getItems()
+    {
+        return $this->item;
+    }
+
+    /**
+     * @param array $items
+     */
+    public function setItems(array $items = array())
+    {
+        $this->item = $items;
+    }
+
+    /**
      * @return mixed
      */
     public function current()

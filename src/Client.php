@@ -4,11 +4,14 @@ namespace PlacetoPay\PSE;
 
 use PlacetoPay\PSE\Struct\Authentication;
 use PlacetoPay\PSE\Struct\CreateTransaction;
+use PlacetoPay\PSE\Struct\CreateTransactionMultiCredit;
+use PlacetoPay\PSE\Struct\CreateTransactionMultiCreditResponse;
 use PlacetoPay\PSE\Struct\CreateTransactionResponse;
 use PlacetoPay\PSE\Struct\GetBankList;
 use PlacetoPay\PSE\Struct\GetBankListResponse;
 use PlacetoPay\PSE\Struct\GetTransactionInformation;
 use PlacetoPay\PSE\Struct\GetTransactionInformationResponse;
+use PlacetoPay\PSE\Struct\PSETransactionMultiCreditRequest;
 use PlacetoPay\PSE\Struct\PSETransactionRequest;
 
 class Client extends \SoapClient
@@ -50,6 +53,17 @@ class Client extends \SoapClient
     }
 
     /**
+     * @param PSETransactionMultiCreditRequest $transactionRequest
+     * @return CreateTransactionMultiCreditResponse
+     */
+    public function createTransactionMultiCredit(PSETransactionMultiCreditRequest $transactionRequest)
+    {
+        return parent::createTransactionMultiCredit(
+            new CreateTransactionMultiCredit($this->auth, $transactionRequest)
+        );
+    }
+
+    /**
      * @param int $transactionID
      * @return GetTransactionInformationResponse
      */
@@ -76,6 +90,11 @@ class Client extends \SoapClient
             'createTransaction' => '\\PlacetoPay\\PSE\\Struct\\CreateTransaction',
             'PSETransactionResponse' => '\\PlacetoPay\\PSE\\Struct\\PSETransactionResponse',
             'createTransactionResponse' => '\\PlacetoPay\\PSE\\Struct\\CreateTransactionResponse',
+            'CreditConcept' => '\\PlacetoPay\\PSE\\Struct\\CreditConcept',
+            'ArrayOfCreditconcept' => '\\PlacetoPay\\PSE\\Struct\\ArrayOfCreditconcept',
+            'PSETransactionMultiCreditRequest' => '\\PlacetoPay\\PSE\\Struct\\PSETransactionMultiCreditRequest',
+            'createTransactionMultiCredit' => '\\PlacetoPay\\PSE\\Struct\\CreateTransactionMultiCredit',
+            'createTransactionMultiCreditResponse' => '\\PlacetoPay\\PSE\\Struct\\CreateTransactionMultiCreditResponse',
             'getTransactionInformation' => '\\PlacetoPay\\PSE\\Struct\\GetTransactionInformation',
             'TransactionInformation' => '\\PlacetoPay\\PSE\\Struct\\TransactionInformation',
             'getTransactionInformationResponse' => '\\PlacetoPay\\PSE\\Struct\\GetTransactionInformationResponse',

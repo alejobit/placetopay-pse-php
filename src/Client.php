@@ -66,6 +66,7 @@ class Client extends \SoapClient
 
         $response = $this->getUpdatedBankList();
         $cachedResponse->set($response);
+        $cachedResponse->expiresAfter(86400); // 1 day in cache
         $this->cachePool->save($cachedResponse);
 
         return $response;

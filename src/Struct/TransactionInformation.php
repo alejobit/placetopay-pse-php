@@ -172,4 +172,26 @@ class TransactionInformation
     {
         return $this->responseReasonText;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'transactionID' => $this->transactionID,
+            'sessionID' => $this->sessionID,
+            'reference' => $this->reference,
+            'requestDate' => $this->requestDate,
+            'bankProcessDate' => $this->bankProcessDate,
+            'onTest' => $this->onTest,
+            'returnCode' => $this->returnCode,
+            'trazabilityCode' => $this->trazabilityCode,
+            'transactionCycle' => $this->transactionCycle,
+            'transactionState' => $this->transactionState,
+            'responseCode' => $this->responseCode,
+            'responseReasonCode' => $this->responseReasonCode,
+            'responseReasonText' => $this->responseReasonText,
+        );
+    }
 }

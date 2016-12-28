@@ -146,4 +146,24 @@ class PSETransactionResponse
     {
         return $this->responseReasonText;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'returnCode' => $this->returnCode,
+            'bankURL' => $this->bankURL,
+            'trazabilityCode' => $this->trazabilityCode,
+            'transactionCycle' => $this->transactionCycle,
+            'transactionID' => $this->transactionID,
+            'sessionID' => $this->sessionID,
+            'bankCurrency' => $this->bankCurrency,
+            'bankFactor' => $this->bankFactor,
+            'responseCode' => $this->responseCode,
+            'responseReasonCode' => $this->responseReasonCode,
+            'responseReasonText' => $this->responseReasonText,
+        );
+    }
 }

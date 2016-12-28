@@ -28,4 +28,20 @@ class ArrayOfCreditConcept extends ArrayStruct
     {
         $this->item[] = $item;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array_map(function (CreditConcept $creditConcept) {
+            return array(
+                'entityCode' => $creditConcept->getEntityCode(),
+                'serviceCode' => $creditConcept->getServiceCode(),
+                'amountValue' => $creditConcept->getAmountValue(),
+                'taxValue' => $creditConcept->getTaxValue(),
+                'description' => $creditConcept->getDescription(),
+            );
+        }, $this->item);
+    }
 }

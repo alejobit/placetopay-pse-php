@@ -59,7 +59,7 @@ class ClientTest extends TestCase
         $bank = $bankList->current();
 
         $request = new PSETransactionRequest();
-        $request->setBankCode($bank->getBankCode());
+        $request->setBankCode($bank->getCode());
         $request->setBankInterface(Bank::PERSONAL_INTERFACE);
         $request->setReturnURL('https://www.placetopay.com');
         $request->setReference(md5('reference'));
@@ -110,7 +110,7 @@ class ClientTest extends TestCase
 
         $request = new PSETransactionMultiCreditRequest();
         $request->setCredits($this->getArrayOfCreditConceptInstance());
-        $request->setBankCode($bank->getBankCode());
+        $request->setBankCode($bank->getCode());
         $request->setBankInterface(Bank::PERSONAL_INTERFACE);
         $request->setReturnURL('https://www.placetopay.com');
         $request->setReference(md5('reference'));

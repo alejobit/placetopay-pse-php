@@ -20,7 +20,7 @@ class Bank
     /**
      * @return string
      */
-    public function getBankCode()
+    public function getCode()
     {
         return $this->bankCode;
     }
@@ -28,7 +28,7 @@ class Bank
     /**
      * @return string
      */
-    public function getBankName()
+    public function getName()
     {
         return $this->bankName;
     }

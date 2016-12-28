@@ -28,4 +28,17 @@ class ArrayOfAttribute extends ArrayStruct
     {
         $this->item[] = $item;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array_map(function (Attribute $attribute) {
+            return array(
+                'name' => $attribute->getName(),
+                'value' => $attribute->getValue(),
+            );
+        }, $this->item);
+    }
 }

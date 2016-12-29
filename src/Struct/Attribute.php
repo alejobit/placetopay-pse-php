@@ -2,6 +2,8 @@
 
 namespace PlacetoPay\PSE\Struct;
 
+use PlacetoPay\PSE\Helper\Validator;
+
 class Attribute
 {
     /**
@@ -37,7 +39,7 @@ class Attribute
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->name = Validator::validString($name, 30);
     }
 
     /**
@@ -53,6 +55,6 @@ class Attribute
      */
     public function setValue($value)
     {
-        $this->value = $value;
+        $this->value = Validator::validString($value, 128);
     }
 }

@@ -28,7 +28,7 @@ class ArrayStruct implements \Iterator, \Countable
     /**
      * @param array $items
      */
-    public function setItems(array $items = array())
+    public function setItems(array $items)
     {
         $this->item = $items;
     }

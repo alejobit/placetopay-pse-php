@@ -2,6 +2,8 @@
 
 namespace PlacetoPay\PSE\Struct;
 
+use PlacetoPay\PSE\Helper\Validator;
+
 class CreditConcept
 {
     /**
@@ -42,7 +44,7 @@ class CreditConcept
      */
     public function setEntityCode($entityCode)
     {
-        $this->entityCode = $entityCode;
+        $this->entityCode = Validator::validString($entityCode, 12);
     }
 
     /**
@@ -58,7 +60,7 @@ class CreditConcept
      */
     public function setServiceCode($serviceCode)
     {
-        $this->serviceCode = $serviceCode;
+        $this->serviceCode = Validator::validString($serviceCode, 12);
     }
 
     /**
@@ -74,7 +76,7 @@ class CreditConcept
      */
     public function setAmountValue($amountValue)
     {
-        $this->amountValue = $amountValue;
+        $this->amountValue = Validator::validDouble($amountValue);
     }
 
     /**
@@ -90,7 +92,7 @@ class CreditConcept
      */
     public function setTaxValue($taxValue)
     {
-        $this->taxValue = $taxValue;
+        $this->taxValue = Validator::validDouble($taxValue);
     }
 
     /**
@@ -106,6 +108,6 @@ class CreditConcept
      */
     public function setDescription($description)
     {
-        $this->description = $description;
+        $this->description = Validator::validString($description, 60);
     }
 }

@@ -4,8 +4,10 @@ namespace PlacetoPay\PSE\Test;
 
 use PHPUnit\Framework\TestCase;
 use PlacetoPay\PSE\Client;
+use PlacetoPay\PSE\Struct\ArrayOfAttribute;
 use PlacetoPay\PSE\Struct\ArrayOfBank;
 use PlacetoPay\PSE\Struct\ArrayOfCreditConcept;
+use PlacetoPay\PSE\Struct\Attribute;
 use PlacetoPay\PSE\Struct\Bank;
 use PlacetoPay\PSE\Struct\CreateTransactionMultiCreditResponse;
 use PlacetoPay\PSE\Struct\CreateTransactionResponse;
@@ -58,6 +60,9 @@ class ClientTest extends TestCase
     {
         $bank = $bankList->current();
 
+        $additionalData = new ArrayOfAttribute();
+        $additionalData->addItem(new Attribute('name', 'value'));
+
         $request = new PSETransactionRequest();
         $request->setBankCode($bank->getCode());
         $request->setBankInterface(Bank::PERSONAL_INTERFACE);
@@ -66,12 +71,13 @@ class ClientTest extends TestCase
         $request->setDescription('Description of transaction');
         $request->setLanguage('ES');
         $request->setCurrency('COP');
-        $request->setTotalAmount(123456);
-        $request->setTaxAmount(0);
-        $request->setDevolutionBase(0);
-        $request->setTipAmount(0);
+        $request->setTotalAmount(12345.6);
+        $request->setTaxAmount(0.0);
+        $request->setDevolutionBase(0.0);
+        $request->setTipAmount(0.0);
         $request->setPayer($this->getPayerInstance());
         $request->setIpAddress('127.0.0.1');
+        $request->setAdditionalData($additionalData);
 
         $response = $client->createTransaction($request);
         $this->assertInstanceOf(CreateTransactionResponse::class, $response);
@@ -117,10 +123,10 @@ class ClientTest extends TestCase
         $request->setDescription('Description of transaction');
         $request->setLanguage('ES');
         $request->setCurrency('COP');
-        $request->setTotalAmount(123456);
-        $request->setTaxAmount(0);
-        $request->setDevolutionBase(0);
-        $request->setTipAmount(0);
+        $request->setTotalAmount(12345.6);
+        $request->setTaxAmount(0.0);
+        $request->setDevolutionBase(0.0);
+        $request->setTipAmount(0.0);
         $request->setPayer($this->getPayerInstance());
         $request->setIpAddress('127.0.0.1');
 
@@ -145,7 +151,7 @@ class ClientTest extends TestCase
         $payer->setAddress('Calle 53 No. 45 – 112 OF. 1901');
         $payer->setCity('Medellín');
         $payer->setProvince('Antioquia');
-        $payer->setCountry('Colombia');
+        $payer->setCountry('CO');
         $payer->setPhone('+57 (4) 444 2310');
         $payer->setMobile('+57 (4) 444 2310');
 
@@ -157,8 +163,8 @@ class ClientTest extends TestCase
         $cc = new CreditConcept();
         $cc->setEntityCode('123456');
         $cc->setServiceCode('654321');
-        $cc->setAmountValue(123456);
-        $cc->setTaxValue(0);
+        $cc->setAmountValue(12345.6);
+        $cc->setTaxValue(0.0);
         $cc->setDescription('Description of credit concept');
 
         $ccc = new ArrayOfCreditConcept();

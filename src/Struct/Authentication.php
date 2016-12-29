@@ -2,6 +2,8 @@
 
 namespace PlacetoPay\PSE\Struct;
 
+use PlacetoPay\PSE\Helper\Validator;
+
 class Authentication
 {
     /**
@@ -31,7 +33,7 @@ class Authentication
      */
     public function __construct($login, $tranKey, array $additional = array())
     {
-        $this->login = $login;
+        $this->login = Validator::validString($login, 32);
         $this->tranKey = $this->generateHash($tranKey);
         $this->additional = new ArrayOfAttribute($additional);
     }

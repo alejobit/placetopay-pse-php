@@ -2,6 +2,8 @@
 
 namespace PlacetoPay\PSE\Struct;
 
+use PlacetoPay\PSE\Helper\Validator;
+
 class PSETransactionRequest
 {
     /**
@@ -102,7 +104,7 @@ class PSETransactionRequest
      */
     public function setBankCode($bankCode)
     {
-        $this->bankCode = $bankCode;
+        $this->bankCode = Validator::validString($bankCode, 4);
     }
 
     /**
@@ -118,7 +120,7 @@ class PSETransactionRequest
      */
     public function setBankInterface($bankInterface)
     {
-        $this->bankInterface = $bankInterface;
+        $this->bankInterface = Validator::validString($bankInterface, 1);
     }
 
     /**
@@ -134,7 +136,7 @@ class PSETransactionRequest
      */
     public function setReturnURL($returnURL)
     {
-        $this->returnURL = $returnURL;
+        $this->returnURL = Validator::validString($returnURL, 255);
     }
 
     /**
@@ -150,7 +152,7 @@ class PSETransactionRequest
      */
     public function setReference($reference)
     {
-        $this->reference = $reference;
+        $this->reference = Validator::validString($reference, 32);
     }
 
     /**
@@ -166,7 +168,7 @@ class PSETransactionRequest
      */
     public function setDescription($description)
     {
-        $this->description = $description;
+        $this->description = Validator::validString($description, 255);
     }
 
     /**
@@ -182,7 +184,7 @@ class PSETransactionRequest
      */
     public function setLanguage($language)
     {
-        $this->language = $language;
+        $this->language = Validator::validString($language, 2);
     }
 
     /**
@@ -198,7 +200,7 @@ class PSETransactionRequest
      */
     public function setCurrency($currency)
     {
-        $this->currency = $currency;
+        $this->currency = Validator::validString($currency, 3);
     }
 
     /**
@@ -214,7 +216,7 @@ class PSETransactionRequest
      */
     public function setTotalAmount($totalAmount)
     {
-        $this->totalAmount = $totalAmount;
+        $this->totalAmount = Validator::validDouble($totalAmount);
     }
 
     /**
@@ -230,7 +232,7 @@ class PSETransactionRequest
      */
     public function setTaxAmount($taxAmount)
     {
-        $this->taxAmount = $taxAmount;
+        $this->taxAmount = Validator::validDouble($taxAmount);
     }
 
     /**
@@ -246,7 +248,7 @@ class PSETransactionRequest
      */
     public function setDevolutionBase($devolutionBase)
     {
-        $this->devolutionBase = $devolutionBase;
+        $this->devolutionBase = Validator::validDouble($devolutionBase);
     }
 
     /**
@@ -262,7 +264,7 @@ class PSETransactionRequest
      */
     public function setTipAmount($tipAmount)
     {
-        $this->tipAmount = $tipAmount;
+        $this->tipAmount = Validator::validDouble($tipAmount);
     }
 
     /**
@@ -326,7 +328,7 @@ class PSETransactionRequest
      */
     public function setIpAddress($ipAddress)
     {
-        $this->ipAddress = $ipAddress;
+        $this->ipAddress = Validator::validString($ipAddress, 15);
     }
 
     /**
@@ -342,7 +344,7 @@ class PSETransactionRequest
      */
     public function setUserAgent($userAgent)
     {
-        $this->userAgent = $userAgent;
+        $this->userAgent = Validator::validString($userAgent, 255);
     }
 
     /**
@@ -359,5 +361,13 @@ class PSETransactionRequest
     public function setAdditionalData(ArrayOfAttribute $additionalData)
     {
         $this->additionalData = $additionalData;
+    }
+
+    /**
+     * @param Attribute $attribute
+     */
+    public function addAdditionalData(Attribute $attribute)
+    {
+        $this->additionalData->addItem($attribute);
     }
 }

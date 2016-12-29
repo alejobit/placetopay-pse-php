@@ -2,20 +2,17 @@
 
 namespace PlacetoPay\PSE\Struct;
 
+use PlacetoPay\PSE\Helper\Validator;
+
 class ArrayOfAttribute extends ArrayStruct
 {
     /**
      * @param array $items
      */
-    public function setItems(array $items = array())
+    public function setItems(array $items)
     {
         foreach ($items as $item) {
-            if (!$item instanceof Attribute) {
-                throw new \InvalidArgumentException(sprintf(
-                    'The item property can only contain items of \PlacetoPay\PSE\Struct\Attribute, "%s" given',
-                    is_object($item) ? get_class($item) : gettype($item)
-                ));
-            }
+            Validator::validObject($item, Attribute::class);
         }
 
         $this->item = $items;

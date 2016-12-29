@@ -24,4 +24,12 @@ class PSETransactionMultiCreditRequest extends PSETransactionRequest
     {
         $this->credits = $credits;
     }
+
+    /**
+     * @param CreditConcept $creditConcept
+     */
+    public function addCreditConcept(CreditConcept $creditConcept)
+    {
+        $this->credits->addItem($creditConcept);
+    }
 }

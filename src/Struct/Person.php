@@ -2,6 +2,8 @@
 
 namespace PlacetoPay\PSE\Struct;
 
+use PlacetoPay\PSE\Helper\Validator;
+
 class Person
 {
     /**
@@ -77,7 +79,7 @@ class Person
      */
     public function setDocumentType($documentType)
     {
-        $this->documentType = $documentType;
+        $this->documentType = Validator::validString($documentType, 3);
     }
 
     /**
@@ -93,7 +95,7 @@ class Person
      */
     public function setDocument($document)
     {
-        $this->document = $document;
+        $this->document = Validator::validString($document, 12);
     }
 
     /**
@@ -109,7 +111,7 @@ class Person
      */
     public function setFirstName($firstName)
     {
-        $this->firstName = $firstName;
+        $this->firstName = Validator::validString($firstName, 60);
     }
 
     /**
@@ -125,7 +127,7 @@ class Person
      */
     public function setLastName($lastName)
     {
-        $this->lastName = $lastName;
+        $this->lastName = Validator::validString($lastName, 60);
     }
 
     /**
@@ -141,7 +143,7 @@ class Person
      */
     public function setCompany($company)
     {
-        $this->company = $company;
+        $this->company = Validator::validString($company, 60);
     }
 
     /**
@@ -157,7 +159,7 @@ class Person
      */
     public function setEmailAddress($emailAddress)
     {
-        $this->emailAddress = $emailAddress;
+        $this->emailAddress = Validator::validString($emailAddress, 80);
     }
 
     /**
@@ -173,7 +175,7 @@ class Person
      */
     public function setAddress($address)
     {
-        $this->address = $address;
+        $this->address = Validator::validString($address, 100);
     }
 
     /**
@@ -189,7 +191,7 @@ class Person
      */
     public function setCity($city)
     {
-        $this->city = $city;
+        $this->city = Validator::validString($city, 50);
     }
 
     /**
@@ -205,7 +207,7 @@ class Person
      */
     public function setProvince($province)
     {
-        $this->province = $province;
+        $this->province = Validator::validString($province, 50);
     }
 
     /**
@@ -221,7 +223,7 @@ class Person
      */
     public function setCountry($country)
     {
-        $this->country = $country;
+        $this->country = Validator::validString($country, 2);
     }
 
     /**
@@ -237,7 +239,7 @@ class Person
      */
     public function setPhone($phone)
     {
-        $this->phone = $phone;
+        $this->phone = Validator::validString($phone, 30);
     }
 
     /**
@@ -253,6 +255,6 @@ class Person
      */
     public function setMobile($mobile)
     {
-        $this->mobile = $mobile;
+        $this->mobile = Validator::validString($mobile, 30);
     }
 }

@@ -16,6 +16,8 @@ use PlacetoPay\PSE\Struct\PSETransactionRequest;
 
 class Client extends \SoapClient
 {
+    const DEFAULT_WSDL = 'https://test.placetopay.com/soap/pse/?wsdl';
+
     /**
      * @var Authentication
      */
@@ -26,9 +28,10 @@ class Client extends \SoapClient
      * @param string $tranKey
      * @param string $wsdl
      */
-    public function __construct($login, $tranKey, $wsdl = 'https://test.placetopay.com/soap/pse/?wsdl')
+    public function __construct($login, $tranKey, $wsdl = null)
     {
         $this->auth = new Authentication($login, $tranKey);
+        $wsdl = $wsdl ?: self::DEFAULT_WSDL;
 
         parent::__construct($wsdl, array(
             'classmap' => $this->getClassMap(),
@@ -40,7 +43,9 @@ class Client extends \SoapClient
      */
     public function getBankList()
     {
-        return parent::getBankList(new GetBankList($this->auth));
+        return parent::__soapCall('getBankList', array(
+            new GetBankList($this->auth)
+        ));
     }
 
     /**
@@ -49,7 +54,9 @@ class Client extends \SoapClient
      */
     public function createTransaction(PSETransactionRequest $transactionRequest)
     {
-        return parent::createTransaction(new CreateTransaction($this->auth, $transactionRequest));
+        return parent::__soapCall('createTransaction', array(
+            new CreateTransaction($this->auth, $transactionRequest)
+        ));
     }
 
     /**
@@ -58,9 +65,9 @@ class Client extends \SoapClient
      */
     public function createTransactionMultiCredit(PSETransactionMultiCreditRequest $transactionRequest)
     {
-        return parent::createTransactionMultiCredit(
+        return parent::__soapCall('createTransactionMultiCredit', array(
             new CreateTransactionMultiCredit($this->auth, $transactionRequest)
-        );
+        ));
     }
 
     /**
@@ -69,7 +76,9 @@ class Client extends \SoapClient
      */
     public function getTransactionInformation($transactionID)
     {
-        return parent::getTransactionInformation(new GetTransactionInformation($this->auth, $transactionID));
+        return parent::__soapCall('getTransactionInformation', array(
+            new GetTransactionInformation($this->auth, $transactionID)
+        ));
     }
 
     /**

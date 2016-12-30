@@ -34,6 +34,12 @@ use PlacetoPay\PSE\PSE;
 $pse = new PSE($login, $tranKey);
 ```
 
+Setting the [PSR-6](http://www.php-fig.org/psr/psr-6/) cache adapter instance (which must implement ``Psr\Cache\CacheItemPoolInterface``)
+
+```php
+$pse->setCacheAdapter(CacheItemPoolInterface $cacheAdapter);
+```
+
 Obtains the list of banks available for the trading establishment in the PSE system of ACH Colombia
 
 This method returns a ``PlacetoPay\PSE\Struct\ArrayOfBanks`` object (which implements ``\Iterator`` and ``\Countable`` interfaces)
@@ -104,5 +110,5 @@ $response = $transaction->send()
 To obtain the information of a specific transaction can use the method ``getTransactionInformation($id)`` passing the unique identifier of the transaction to consult
 
 ```php
-$transactionInfo = $pse->getTransactionInformation($transaction->getTransactionId());
+$transactionInfo = $pse->getTransactionInformation($response->getTransactionId());
 ```

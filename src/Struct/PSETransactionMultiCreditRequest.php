@@ -10,6 +10,15 @@ class PSETransactionMultiCreditRequest extends PSETransactionRequest
     private $credits;
 
     /**
+     * @param ArrayOfCreditConcept $credits
+     */
+    public function __construct(ArrayOfCreditConcept $credits = null)
+    {
+        $this->credits = $credits ?: new ArrayOfCreditConcept();
+        parent::__construct();
+    }
+
+    /**
      * @return ArrayOfCreditConcept
      */
     public function getCredits()

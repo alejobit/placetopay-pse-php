@@ -92,6 +92,14 @@ class PSETransactionRequest
     protected $additionalData;
 
     /**
+     * @param ArrayOfAttribute $additionalData
+     */
+    public function __construct(ArrayOfAttribute $additionalData = null)
+    {
+        $this->additionalData = $additionalData ?: new ArrayOfAttribute();
+    }
+
+    /**
      * @return string
      */
     public function getBankCode()

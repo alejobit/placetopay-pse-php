@@ -112,3 +112,7 @@ To obtain the information of a specific transaction can use the method ``getTran
 ```php
 $transactionInfo = $pse->getTransactionInformation($response->getTransactionId());
 ```
+
+## Related project
+
+- [PlacetoPay PSE Pimple Service Provider](https://github.com/alejobit/placetopay-pse-pimple), this library is compatible with [Pimple](https://github.com/silexphp/Pimple) based projects, such as the [Silex micro-framework](https://github.com/silexphp/Silex)

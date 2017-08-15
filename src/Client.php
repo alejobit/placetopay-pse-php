@@ -17,6 +17,7 @@ use PlacetoPay\PSE\Struct\PSETransactionRequest;
 class Client extends \SoapClient
 {
     const DEFAULT_WSDL = 'https://test.placetopay.com/soap/pse/?wsdl';
+    const DEFAULT_LOCATION = 'https://test.placetopay.com/soap/pse/';
 
     /**
      * @var Authentication
@@ -28,13 +29,13 @@ class Client extends \SoapClient
      * @param string $tranKey
      * @param string $wsdl
      */
-    public function __construct($login, $tranKey, $wsdl = null)
+    public function __construct($login, $tranKey, $wsdl = null, $location = null)
     {
         $this->auth = new Authentication($login, $tranKey);
-        $wsdl = $wsdl ?: self::DEFAULT_WSDL;
 
-        parent::__construct($wsdl, array(
+        parent::__construct($wsdl ?: self::DEFAULT_WSDL, array(
             'classmap' => $this->getClassMap(),
+            'location' => $location ?: self::DEFAULT_LOCATION,
         ));
     }
 

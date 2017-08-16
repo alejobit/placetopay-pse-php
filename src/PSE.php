@@ -18,9 +18,9 @@ class PSE
      */
     private $cache;
 
-    public function __construct($login, $tranKey, $wsdl = null)
+    public function __construct($login, $tranKey, $wsdl = null, $location = null)
     {
-        $this->client = new Client($login, $tranKey, $wsdl);
+        $this->client = new Client($login, $tranKey, $wsdl, $location);
     }
 
     /**
